@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Cuc_Duobank_Sprint4" />
+        <module name="Duobank_Sprint4" />
       </profile>
     </annotationProcessing>
   </component>
