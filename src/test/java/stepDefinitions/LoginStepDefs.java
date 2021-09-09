@@ -71,5 +71,18 @@ public class LoginStepDefs {
     }
 
 
+    @When("The user enters wrong email type")
+    public void theUserEntersWrongEmailType() {
+        new LoginPage().login("rena123@ttt.com", "pass");
+
+    }
+    @Then("The user should not be able to login on homepage")
+    public void theUserShouldNotBeAbleToLoginOnHomepage() {
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().equals(ConfigReader.getProperty("url")));
+
+    }
+
+
+
 
 }
