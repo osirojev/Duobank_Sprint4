@@ -20,38 +20,38 @@ import java.util.Map;
 
 public class SignUpStepDefs extends TestBase {
 
-    @Given("I am on SignUp page")
-    public void iAmOnSignUpPage() {
+
+    @Given("The user is on SignUp page")
+    public void the_user_is_on_sign_up_page() {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
-//        loginPage.signUpLink.click(;)
-        //Driver.getDriver().get("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/register.php");
+        loginPage.signUpLink.click();
+
     }
+
     @When("I fill out all input fields with proper credentials and click submit button")
     public void iFillOutAllInputFieldsWithProperCredentialsAndClickSubmitButton()
      {
-         signup.signUp(firstName, lastName, email, pass);
-//        loginPage.signUpLink.click();
-//        SignUpPage page = new SignUpPage();
-//        page.firstNameField.sendKeys(firstName);
-//        page.lastNameField.sendKeys(lastName);
-//        page.emailField.sendKeys(email);
-//        page.passwordField.sendKeys(pass);
-//        page.signUpButtonField.click();
+
+         SignUpPage page = new SignUpPage();
+        page.firstNameField.sendKeys(firstName);
+        page.lastNameField.sendKeys(lastName);
+        page.emailField.sendKeys(email);
+        page.passwordField.sendKeys(pass);
+        page.signUpButtonField.click();
 
 
      }
     @Then("I should be land on login page")
-    public void iShouldBeLandOnLoginPage() {
+    public void iShouldBeLandOnLoginPage() throws SQLException {
         //String expectedPage = "duobank-env.eba-hjmrxg9a.ust-eas-2.elasticbeanstalk.com/index.php";
         new WebDriverWait(Driver.getDriver(), 5).until(ExpectedConditions.urlToBe(loginUrl));
         Assert.assertEquals(Driver.getDriver().getCurrentUrl(),loginUrl);
+
+        DBUtility.updateQuery("delete from tbl_user where email='"+email+"'");
+
     }
 
-    @Given("I am in homepage and click on SignUp")
-    public void iAmInHomepageAndClickOnSignUp() {
-        Driver.getDriver().get(ConfigReader.getProperty("url"));
-        loginPage.signUpLink.click();
-    }
+
     @When("The user enters the invalid credentials as {string} for first name, {string} for last name, {string} for email, and {string} for password")
     public void theUserEntersTheInvalidCredentialsAsForUsernameForFirstNameForLastNameForEmailAndForPassword(String first_Name, String last_Name, String e_mail, String password) {
 
@@ -70,7 +70,7 @@ public class SignUpStepDefs extends TestBase {
     @When("The user enters the valid credentials as {string} for last name, {string} for email, and {string} for password")
     public void theUserEntersTheValidCredentialsAsForUsernameForLastNameForEmailAndForPassword(String last_Name, String e_mail, String password) {
         SignUpPage page = new SignUpPage();
-        page.firstNameField.sendKeys(last_Name);
+        page.lastNameField.sendKeys(last_Name);
         page.emailField.sendKeys(e_mail);
         page.passwordField.sendKeys(password);
         page.signUpButtonField.click();
@@ -83,11 +83,7 @@ public class SignUpStepDefs extends TestBase {
         page.passwordField.sendKeys(password);
         page.signUpButtonField.click();
     }
-    @Given("I am on the homepage")
-    public void iAmOnTheHomepage() {
-        Driver.getDriver().get(ConfigReader.getProperty("url"));
-        loginPage.signUpLink.click();
-    }
+
     @When("The user click on SignUp link and enters the valid credentials as {string} for first name, {string} for last name, {string} for email, and {string} for password")
     public void theUserClickOnSignUpLinkAndEntersTheValidCredentialsAsForUsernameForFirstNameForLastNameForEmailAndForPassword(String first_name, String last_name, String e_Mail, String passw) {
         SignUpPage page = new SignUpPage();
@@ -108,11 +104,6 @@ public class SignUpStepDefs extends TestBase {
 
         DBUtility.updateQuery("delete from tbl_user where first_name='Lulu'");
 
-
     }
-
-
-
-
 }
 
