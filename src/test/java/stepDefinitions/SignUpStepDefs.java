@@ -52,18 +52,66 @@ public class SignUpStepDefs extends TestBase {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         loginPage.signUpLink.click();
     }
-    @When("The user enters the invalid credentials as {string} for username, {string} for first name, {string} for last name, {string} for email, and {string} for password")
-    public void theUserEntersTheInvalidCredentialsAsForUsernameForFirstNameForLastNameForEmailAndForPassword(String string, String string2, String string3, String string4, String string5) {
+    @When("The user enters the invalid credentials as {string} for first name, {string} for last name, {string} for email, and {string} for password")
+    public void theUserEntersTheInvalidCredentialsAsForUsernameForFirstNameForLastNameForEmailAndForPassword(String first_Name, String last_Name, String e_mail, String password) {
 
+        SignUpPage page = new SignUpPage();
+       page.firstNameField.sendKeys(first_Name);
+       page.lastNameField.sendKeys(last_Name);
+       page.emailField.sendKeys(e_mail);
+       page.passwordField.sendKeys(password);
+       page.signUpButtonField.click();
     }
     @Then("User should not going to another page")
     public void userShouldNotGoingToAnotherPage() {
         String expectedURL = "http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/register.php";
-        new WebDriverWait(Driver.getDriver(), 5).until(ExpectedConditions.urlToBe(loginUrl));
         Assert.assertEquals(Driver.getDriver().getCurrentUrl(), expectedURL);
     }
-
-
-
+    @When("The user enters the valid credentials as {string} for last name, {string} for email, and {string} for password")
+    public void theUserEntersTheValidCredentialsAsForUsernameForLastNameForEmailAndForPassword(String last_Name, String e_mail, String password) {
+        SignUpPage page = new SignUpPage();
+        page.firstNameField.sendKeys(last_Name);
+        page.emailField.sendKeys(e_mail);
+        page.passwordField.sendKeys(password);
+        page.signUpButtonField.click();
     }
+    @When("The user enters the valid credentials as {string} for first name, {string} for email, and {string} for password")
+    public void theUserEntersTheValidCredentialsAsForUsernameForFirstNameForEmailAndForPassword(String first_Name, String e_mail, String password) {
+        SignUpPage page = new SignUpPage();
+        page.firstNameField.sendKeys(first_Name);
+        page.emailField.sendKeys(e_mail);
+        page.passwordField.sendKeys(password);
+        page.signUpButtonField.click();
+    }
+    @Given("I am on the homepage")
+    public void iAmOnTheHomepage() {
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        loginPage.signUpLink.click();
+    }
+    @When("The user click on SignUp link and enters the valid credentials as {string} for first name, {string} for last name, {string} for email, and {string} for password")
+    public void theUserClickOnSignUpLinkAndEntersTheValidCredentialsAsForUsernameForFirstNameForLastNameForEmailAndForPassword(String first_name, String last_name, String e_mail, String passw) {
+        SignUpPage page = new SignUpPage();
+       page.firstNameField.sendKeys(first_name);
+       page.lastNameField.sendKeys(last_name);
+       page.emailField.sendKeys(e_mail);
+       page.passwordField.sendKeys(passw);
+       page.signUpButtonField.click();
+    }
+    @Then("User should be added to database")
+    public void userShouldBeAddedToDatabase() throws SQLException {
+
+        String query = "select count(*) from tbl_user where first_name = 'Lulu'";
+        List<Map<String, Object>> maps = DBUtility.getQueryResultListOfMaps(query);
+        System.out.println("maps = " + maps);
+        long result = (long)(maps.get(0).get("count(*)"));
+        Assert.assertEquals(result, 1);
+
+
+        DBUtility.updateQuery("delete from users where first_name='Lulu'");
+    }
+
+
+
+
+}
 
