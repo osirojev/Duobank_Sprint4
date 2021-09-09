@@ -31,19 +31,19 @@ Feature: SignUp related scenarios
     Then User should not going to another page
 
     Examples: Invalid credentials
-      | username | lastName | email           | password    | comment                |
-      | m.usty   | Youst    | mat69@gmail.com | mattioung77 | empty spase first name |
+      | lastName | email           | password    | comment                |
+      | Youst    | mat69@gmail.com | mattioung77 | empty spase first name |
 
   @ui @Irina
   Scenario Outline: Sign up a new user leaving empty space as last name
 
     Given I am in homepage and click on SignUp
-    When The user enters the valid credentials as "<username>" for username, "<firstName>" for first name, "<email>" for email, and "<password>" for password
+    When The user enters the valid credentials as "<firstName>" for first name, "<email>" for email, and "<password>" for password
     Then User should not going to another page
 
     Examples: Invalid credentials
-      | username | firstName | email            | password     | comment               |
-      | m.ustyr  | Yousty    | mart69@gmail.com | matitioung77 | empty spase last name |
+      | firstName | email            | password     | comment               |
+      | Yousty    | mart69@gmail.com | matitioung77 | empty spase last name |
 
 
   @db_only @Irina @fail
@@ -54,5 +54,5 @@ Feature: SignUp related scenarios
     Then User should be added to database
 
     Examples: Valid credentials
-      | username | firstName | lastName | email              | password    |
-      | m.youngy | Lulu      | Lolo     | luluklolo@gmail.com | luluyoung77 |
+      | firstName | lastName | email              | password    |
+      | Lulu      | Lolo     | lololulu@gmail.com | luluyoung77 |

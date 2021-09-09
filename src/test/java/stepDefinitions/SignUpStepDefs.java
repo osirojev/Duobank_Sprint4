@@ -89,25 +89,26 @@ public class SignUpStepDefs extends TestBase {
         loginPage.signUpLink.click();
     }
     @When("The user click on SignUp link and enters the valid credentials as {string} for first name, {string} for last name, {string} for email, and {string} for password")
-    public void theUserClickOnSignUpLinkAndEntersTheValidCredentialsAsForUsernameForFirstNameForLastNameForEmailAndForPassword(String first_name, String last_name, String e_mail, String passw) {
+    public void theUserClickOnSignUpLinkAndEntersTheValidCredentialsAsForUsernameForFirstNameForLastNameForEmailAndForPassword(String first_name, String last_name, String e_Mail, String passw) {
         SignUpPage page = new SignUpPage();
        page.firstNameField.sendKeys(first_name);
        page.lastNameField.sendKeys(last_name);
-       page.emailField.sendKeys(e_mail);
+       page.emailField.sendKeys(e_Mail);
        page.passwordField.sendKeys(passw);
        page.signUpButtonField.click();
     }
     @Then("User should be added to database")
     public void userShouldBeAddedToDatabase() throws SQLException {
 
-        String query = "select count(*) from tbl_user where first_name = 'Lulu'";
+        String query = "select count(*) from tbl_user where email = 'lololulu@gmail.com'";
         List<Map<String, Object>> maps = DBUtility.getQueryResultListOfMaps(query);
         System.out.println("maps = " + maps);
         long result = (long)(maps.get(0).get("count(*)"));
         Assert.assertEquals(result, 1);
 
+        DBUtility.updateQuery("delete from tbl_user where first_name='Lulu'");
 
-        DBUtility.updateQuery("delete from users where first_name='Lulu'");
+
     }
 
 
