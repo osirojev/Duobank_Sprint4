@@ -11,7 +11,7 @@ import utilities.Driver;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
-    @Before ("not @db_only")
+    @Before
     public void setup(){
         Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Driver.getDriver().manage().deleteAllCookies();
@@ -20,7 +20,7 @@ public class Hooks {
         System.out.println("@Before hook");
 
     }
-    @Before ("@db_only")
+    @Before
     public void setupDB(){
         DBUtility.createConnection();
 
@@ -28,7 +28,7 @@ public class Hooks {
 
 
     }
-    @After ("@db_only")
+    @After
     public void DBtearDownScenario(){
         DBUtility.close();
 
@@ -36,7 +36,7 @@ public class Hooks {
 
 
     }
-    @After ("not @db_only")
+    @After
     public void tearDownScenarios(Scenario scenario){
         if(scenario.isFailed()){
          byte [] screenshotAS =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
