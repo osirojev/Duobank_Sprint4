@@ -31,7 +31,7 @@ public class LoginStepDefs {
     public void the_user_should_be_able_to_login_and_land_on_the_homepage() {
 
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/dashboard.php"));
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().equals("https://www.searchpeoplefree.com/find/oyatullo-i-sirojev"));
 
 
 

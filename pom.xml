@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Cuc_Duobank_Sprint4</artifactId>
+    <artifactId>Duobank_Sprint4</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,70 +13,110 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+
+
+
     <dependencies>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
+
+
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>4.4.3</version>
         </dependency>
+
+
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
+
+        <!--      TESTNG dependency-->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.4.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
+
         <dependency>
             <groupId>ru.yandex.qatools.ashot</groupId>
             <artifactId>ashot</artifactId>
             <version>1.5.4</version>
         </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.26</version>
         </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>6.11.0</version>
         </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>6.11.0</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-core</artifactId>
             <version>6.11.0</version>
         </dependency>
+
+
     </dependencies>
+
+
     <build>
         <plugins>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <parallel>methods</parallel>
+<!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
+<!--                    <testFailureIgnore>true</testFailureIgnore>-->
                     <includes>
+                        <include>**/*CucumberRunner.java</include>-->
+                        <include>**/*FailedScenariosRunner.java</include>-->
+
+
                         <!--                    name of your runner class-->
-                        <include>**/*CucumberRunner.java</include>
+                        <!--                    to re-run failed scenarios-->
+                        <!--                    <include>**/*CucumberRunner.java</include>-->
+                        <!--                    <include>**/*FailedScenariosRunner.java</include>-->
+
                     </includes>
                 </configuration>
             </plugin>
@@ -112,6 +152,9 @@
             </plugin>
         </plugins>
     </build>
+
+
+
 
 
 
