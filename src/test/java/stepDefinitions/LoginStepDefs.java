@@ -65,10 +65,6 @@ public class LoginStepDefs {
 
     }
 
-    @When("the user enters valid username and invalid password")
-    public void the_user_enters_valid_username_and_invalid_password() {
-        new LoginPage().login(ConfigReader.getProperty("email"), "duotech");
-    }
 
 
     @When("The user enters wrong email type")
@@ -82,6 +78,16 @@ public class LoginStepDefs {
 
     }
 
+    @When("The user enters correct email type")
+    public void theUserEntersCorrectEmailType() {
+        new LoginPage().login(ConfigReader.getProperty("email"), "1234");
+
+    }
+    @Then("The user should not be able to login")
+    public void theUserShouldNotBeAbleToLogin() {
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().equals(ConfigReader.getProperty("url")));
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains("Login Failed"));
+    }
 
 
 

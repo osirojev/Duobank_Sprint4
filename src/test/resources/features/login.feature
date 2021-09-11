@@ -30,12 +30,11 @@ Feature: As a user, I should be able to login using login page.
 
 
 
-  Scenario: Login using valid username and invalid password
-
-    When the user enters valid username and invalid password
-    Then the user should not be able to login and get an error message
-
 
     Scenario: Login with number credentials
       When The user enters wrong email type
       Then The user should not be able to login on homepage
+
+      Scenario: Login with correct email and wrong password
+        When The user enters correct email type
+        Then The user should not be able to login
