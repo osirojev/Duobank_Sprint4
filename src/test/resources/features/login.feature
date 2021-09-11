@@ -1,5 +1,5 @@
 
-@login
+@login @regression
 Feature: As a user, I should be able to login using login page.
 
 

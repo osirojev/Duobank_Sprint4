@@ -39,12 +39,7 @@
         </dependency>
 
         <!--      TESTNG dependency-->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.4.0</version>
-            <scope>test</scope>
-        </dependency>
+
 
 
 
@@ -102,14 +97,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+<!--                <version>3.0.0-M5</version>-->
                 <configuration>
-                    <parallel>methods</parallel>
+<!--                   mvn-->
 <!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
-<!--                    <testFailureIgnore>true</testFailureIgnore>-->
+                   <testFailureIgnore>true</testFailureIgnore>
                     <includes>
+
                         <include>**/*CucumberRunner.java</include>-->
-                        <include>**/*FailedScenariosRunner.java</include>-->
+<!--                        <include>**/*FailedScenariosRunner.java</include>&ndash;&gt;-->
+<!--                        <include>**/*ParallelRunner.java</include>&ndash;&gt;-->
+
 
 
                         <!--                    name of your runner class-->

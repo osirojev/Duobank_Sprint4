@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(tags = "@login",   // "@login or @smoke", "@login and @smoke", "@login and not @smoke", "@login and @smoke and @regression"
+@CucumberOptions(tags = "@signUp", //@login and @regression //  // "@login or @smoke", "@login and @smoke", "@login and not @smoke", "@login and @smoke and @regression"
         features = "src/test/resources/features", // path where the feature files are located
 //        features = {"src/test/resources/features/ui", "src/test/resources/features/db"}, // for multiple paths
 //        features = "src/test/resources/features/login.feature",  // specific feature file

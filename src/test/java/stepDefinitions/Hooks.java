@@ -21,13 +21,13 @@ public class Hooks {
 
     }
 
-    @Before ("@db_only")
+    @Before ("@db")
     public void setupDb(){
 
         DBUtility.createConnection();
     }
 
-    @After ("@db_only")
+    @After ("@db")
     public void tearDownDb(){
 
         DBUtility.close();
