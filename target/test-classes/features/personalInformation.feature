@@ -1,3 +1,5 @@
+
+@clientInfo @smoke
 Feature: Personal Information page related features
 
   Background: Common steps for all scenarios

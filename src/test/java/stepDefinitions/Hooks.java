@@ -10,13 +10,23 @@ import utilities.Driver;
 
 import java.util.concurrent.TimeUnit;
 
+import static io.restassured.RestAssured.baseURI;
+
 public class Hooks {
 
-    @Before
+    @Before ("not @api")
     public void setupScenario(){
         Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Driver.getDriver().manage().deleteAllCookies();
         Driver.getDriver().manage().window().maximize();
+
+
+    }
+
+    @Before ("@api")
+    public void setupAPI(){
+
+        baseURI = "http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/api";
 
 
     }
