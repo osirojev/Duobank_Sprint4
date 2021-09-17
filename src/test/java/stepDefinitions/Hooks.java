@@ -3,6 +3,7 @@ package stepDefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.restassured.RestAssured;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utilities.DBUtility;
@@ -25,6 +26,10 @@ public class Hooks {
     public void setupDb(){
 
         DBUtility.createConnection();
+    }
+    @Before("@api")
+    public void setUpApi(){
+        RestAssured.baseURI = "http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/api";
     }
 
     @After ("@db")
