@@ -1,3 +1,5 @@
+
+@morgApp @smoke
 Feature: Mortgage Application Preapproval Details page related features
 
   Background: Common steps for all scenarios

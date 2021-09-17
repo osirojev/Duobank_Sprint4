@@ -1,14 +1,16 @@
+
+@signUp @smoke @db
 Feature: SignUp related scenarios
 
   Background: Common steps for all scenarios
     Given The user is on SignUp page
 
-  @ui @db_only @Irina
+
   Scenario: SignUp new User using proper credentials
     When I fill out all input fields with proper credentials and click submit button
     Then I should be land on login page
 
-    @ui @Irina
+
     Scenario Outline: Sign up a new user using wrong credentials
 
       When The user enters the invalid credentials as "<firstName>" for first name, "<lastName>" for last name, "<email>" for email, and "<password>" for password
@@ -26,7 +28,7 @@ Feature: SignUp related scenarios
 
 
 
-  @ui @Irina
+
   Scenario Outline: Sign up a new user leaving empty space as first name
 
     When The user enters the valid credentials as "<lastName>" for last name, "<email>" for email, and "<password>" for password
@@ -36,7 +38,7 @@ Feature: SignUp related scenarios
       | lastName | email           | password    | comment                |
       | Youst    | mat69@gmail.com | mattioung77 | empty spase first name |
 
-  @ui @Irina
+
   Scenario Outline: Sign up a new user leaving empty space as last name
 
     When The user enters the valid credentials as "<firstName>" for first name, "<email>" for email, and "<password>" for password
@@ -47,7 +49,7 @@ Feature: SignUp related scenarios
       | Yousty    | mart69@gmail.com | matitioung77 | empty spase last name |
 
 
-  @db_only @Irina
+
   Scenario Outline: Sign up a new user using proper credentials
 
     When The user click on SignUp link and enters the valid credentials as "<firstName>" for first name, "<lastName>" for last name, "<email>" for email, and "<password>" for password
