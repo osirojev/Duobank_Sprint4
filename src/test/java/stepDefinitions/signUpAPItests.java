@@ -98,7 +98,7 @@ public class signUpAPItests {
     public void theResponseShouldNotBeSucceeded() throws SQLException {
         response.then().
                 body("success", equalTo(0));
-        DBUtility.updateQuery("delete from tbl_user where email='"+users.getEmail()+"'");
+        DBUtility.updateQuery("delete from tbl_user where email='" + userEmail + "'");
     }
 
 }
