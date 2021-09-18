@@ -12,7 +12,9 @@ import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import utilities.DBUtility;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +29,10 @@ public class apiSignUpStepDefs {
     Map<String, String>map;
     RequestSpecification body;
 
+    String userEmail = "";
 
-    @Given("I add the headers {string}, {string} and {string}, {string}")
+
+    @Given("X I add the headers {string}, {string} and {string}, {string}")
     public void iAddTheHeadersAnd(String contentType, String appJson, String accept, String appJson2) {
 
         requestSpecification = given().log().all().
@@ -37,6 +41,8 @@ public class apiSignUpStepDefs {
 
     @Given("I create a valid credentials using {string}, {string}, {string} and {string}")
     public void i_create_a_valid_credentials_using_and(String first_name, String last_name, String email, String password) {
+
+        userEmail = email;
 
         JsonObject jo = new JsonObject();
         jo.addProperty("first_name", first_name);
@@ -54,13 +60,15 @@ public class apiSignUpStepDefs {
     }
 
 
-    @Then("I verify the status code should be {int}")
-    public void iVerifyTheStatusCodeShouldBe(Integer statusCode) {
+    @Then("X I verify the status code should be {int}")
+    public void iVerifyTheStatusCodeShouldBe(Integer statusCode) throws SQLException {
           response.then().log().all().
           statusCode(statusCode);
+
+        DBUtility.updateQuery("delete from tbl_user where email='" + userEmail + "'");
     }
 
-    @Then("The success {string} should be {string}")
+    @Then("X The success {string} should be {string}")
     public void theSuccessShouldBe(String message, String note) {
 
         response.then().log().all().

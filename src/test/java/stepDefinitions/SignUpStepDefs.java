@@ -3,6 +3,8 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,7 +20,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
 public class SignUpStepDefs extends TestBase {
+
 
 
     @Given("The user is on SignUp page")
@@ -105,5 +111,6 @@ public class SignUpStepDefs extends TestBase {
         DBUtility.updateQuery("delete from tbl_user where first_name='Lulu'");
 
     }
+
 }
 

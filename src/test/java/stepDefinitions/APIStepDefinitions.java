@@ -45,9 +45,14 @@ public class APIStepDefinitions {
     @When("I POST {string} to {string} path")
     public void iPOSTToPath(String payLoadFile, String path) {
 
-        payLoadFile = "/Users/rafaelaziz/IdeaProjects/Duobank_cucumber/src/test/java/apitests/payload.json";
+//        payLoadFile = "C:\\MyIdeaProjects2021\\Duobank_Sprint4\\src\\test\\java\\apitests\\payload.json";
 
-        response = requestSpecification.when().body(new File(payLoadFile))
+        final String payload = "{\n" +
+                "  \"email\": \"duotechb5@gmail.com\",\n" +
+                "  \"password\": \"duotechb5\"\n" +
+                "}";
+
+        response = requestSpecification.when().body(payload)
                 .post(path);
 
     }
@@ -82,6 +87,11 @@ public class APIStepDefinitions {
 
         path = "/login.php";
 
+        final String payload ="{\n" +
+                "  \"email\": \"duotechb5@gmail.com\",\n" +
+                "  \"password\": \"duotechb5\"\n" +
+                "}";
+
         token =
                 given()
                         .auth()
@@ -89,7 +99,7 @@ public class APIStepDefinitions {
                         .basic("email", "password")
                         .header("Accept", ContentType.JSON.getAcceptHeader()) // "application/json"
                         .contentType(ContentType.JSON). //
-                        when().body(new File("/Users/rafaelaziz/IdeaProjects/Duobank_cucumber/src/test/java/apitests/payload.json"))
+                        when().body(payload)
                         .post(path).
                         then().
                         extract().path("token");

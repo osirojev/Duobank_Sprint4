@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-        features = "src/test/resources/features/parallel", // path where the feature files are located
+        features = "src/test/resources/features/parallel/signUp.feature", // path where the feature files are located
         glue = "stepDefinitions" // path where the step Definition methods glued to feature file steps are located
 //
 //

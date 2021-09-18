@@ -28,27 +28,4 @@ public class IrinaApi {
                         statusCode(200).extract().as(Map.class);
     }
 
-    @Test
-    public void verifyVideoGameTitlesByExtractingResponse() {
-
-
-        baseURI = "http://ec2-3-16-159-241.us-east-2.compute.amazonaws.com:8080/app";
-
-        Map map =
-                given().
-                        header("Accept", "application/json").
-                        when().log().all().
-                        get("/videogames/4").
-                        then().log().all().
-//                statusCode(200).extract().asString();
-//                statusCode(200).extract().asPrettyString();
-        statusCode(200).extract().as(Map.class);
-
-        System.out.println(map);
-
-        System.out.println(map.get("reviewScore"));
-        System.out.println(map.get("name"));
-
-
-    }
 }
