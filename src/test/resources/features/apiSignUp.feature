@@ -12,3 +12,4 @@ Feature: SignUp endpoint positive test
     Examples:
       | first_name | last_name | email                  | password     |
       | Houston    | Texas     | houstontexas@gmail.com | houston_2021 |
+

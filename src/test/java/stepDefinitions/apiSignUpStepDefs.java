@@ -47,14 +47,6 @@ public class apiSignUpStepDefs {
     }
 
 
-//    @When("I POST newly created user")
-//    public void iPOSTNewlyCreatedUser() {
-//
-//
-//        response = requestSpecification.when().log().all().
-//        post("/login.php");
-//    }
-
     @When("I send a POST request to {string} endpoint")
     public void iSendAPOSTRequestToEndpoint(String endpoint) {
        response = requestSpecification.when().log().all().
