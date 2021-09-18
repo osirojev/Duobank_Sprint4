@@ -15,40 +15,24 @@ Feature: API scenarios
     Then The POJO response status should be 200
     And The response POJO is succeeded
 
-#  Scenario Outline: Create new User Negative
-#
-#    Given I add the following payload as "<firstName>" for first name, "<lastName>" for last name, "<email>" for email, and "<password>" for password
-#    When I send POST request to "/register.php" endpoint
-#    Then The response should not be succeeded
-#
-#    Examples: Invalid credentials
-#      | firstName | lastName | email              | password               | comment                     |
-#      | #$%kl     | Young    | mat99@gmail.com    | mattyoung77            | character in first name     |
-#      | Oyat      | fr%#$@   | oyat4@gmail.com    | oya1siroj91            | character in last name      |
-#      | G         | GularaA  | gulara4@gmail.com  | gularaaalakbarova96    | single letter as first name |
-#      | ricky     | Y        | mat9987@gmail.com  | matt&oung77            | single letter as lastt name |
-#      | .....     | l        | oyatu84@gmail.com  | oyauyt1siroj91         | dots as a first name        |
-#      | Gulari    | ****     | 643jhgty@gmail.com | gulahnyraaalakbarova96 | stars as a last name        |
+  Scenario Outline: Create new User Negative
+    Given I add the following payload as "<firstName>" for first name, "<lastName>" for last name, "<email>" for email, and "<password>" for password
+    When I send POST request to "/register.php" endpoint
+    Then The response should not be succeeded
+
+    Examples: Invalid credentials
+      | firstName | lastName | email              | password               | comment                     |
+      | #$%kl     | Young    | mat99@gmail.com    | mattyoung77            | character in first name     |
+      | Oyat      | fr%#$@   | oyat4@gmail.com    | oya1siroj91            | character in last name      |
+      | G         | GularaA  | gulara4@gmail.com  | gularaaalakbarova96    | single letter as first name |
+      | ricky     | Y        | mat9987@gmail.com  | matt&oung77            | single letter as lastt name |
+      | .....     | l        | oyatu84@gmail.com  | oyauyt1siroj91         | dots as a first name        |
+      | Gulari    | ****     | 643jhgty@gmail.com | gulahnyraaalakbarova96 | stars as a last name        |
 
 
 
 
 
-#  String requestBody = "{\n" +
-#  "   \"first_name\": \"Lolo\",\n" +
-#  "   \"last_name\": \"Pepe\",\n" +
-#  "   \"email\": \"lolopepe2021@gmail.com\",\n" +
-#  "   \"password\": \"duotech2021\"\n" +
-#  "}";
-#
-#  Map map = given()
-#  .header("Accept", "application/json")
-#  .and()
-#  .body(requestBody)
-#  .post("/register.php")
-#  .then().log().all().
-#  statusCode(200).extract().as(Map.class);
-#  }
 
 
 

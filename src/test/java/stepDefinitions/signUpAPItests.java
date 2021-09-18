@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import com.google.gson.JsonObject;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,6 +22,8 @@ public class signUpAPItests {
     Map<String, String> map;
     RequestSpecification requestSpecification;
     Response response;
+
+    String userEmail;
 
     @Given("I add payload")
     public void i_add_payload(List<Map<String,String>> dataTable) {
@@ -78,13 +81,24 @@ public class signUpAPItests {
         DBUtility.updateQuery("delete from tbl_user where email='" + users.getEmail() + "'");
     }
 
-//    @Given("I add the following payload as {string} for first name, {string} for last name, {string} for email, and {string} for password")
-//    public void iAddTheFollowingPayloadAsForFirstNameForLastNameForEmailAndForPassword(String string, String string2, String string3, String string4) {
-//
-//    }
-//    @Then("The response should not be succeeded")
-//    public void theResponseShouldNotBeSucceeded() {
-//
-//    }
+    @Given("I add the following payload as {string} for first name, {string} for last name, {string} for email, and {string} for password")
+    public void iAddTheFollowingPayloadAsForFirstNameForLastNameForEmailAndForPassword(String first_Name, String last_Name, String e_mail, String password) {
+        JsonObject request = new JsonObject();
+        request.addProperty("first_name", first_Name);
+        request.addProperty("last_name", last_Name);
+        request.addProperty("email", e_mail);
+        request.addProperty("password", password);
+
+        userEmail = e_mail;
+
+        requestSpecification = given().body(request);
+    }
+
+    @Then("The response should not be succeeded")
+    public void theResponseShouldNotBeSucceeded() throws SQLException {
+        response.then().
+                body("success", equalTo(0));
+        DBUtility.updateQuery("delete from tbl_user where email='"+users.getEmail()+"'");
+    }
 
 }
